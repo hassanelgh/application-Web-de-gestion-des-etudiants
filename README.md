@@ -4,7 +4,7 @@
    * une application Web basée sur Spring MVC, Spring Data JPA et Spring Security qui permet de gérer des étudiants
 
 
-###   creation de l'entité etudiant et leur repository
+###   creation de l'entité étudiant et leur repository
    * Entite :(`src\main\java\com\app\smfayw\entites\Etudiant.java`)
    * repository : (`src\main\java\com\app\smfayw\repositories\EtudiantRepository.java`)
    * Chaque étudiant est défini par:
