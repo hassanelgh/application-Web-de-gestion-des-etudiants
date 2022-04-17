@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="mainTemplates/mainTemplate"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Etudiants</title>
+    <link href="../css/Etudiants.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+    <div layout:fragment="MainContainer" class="etudiants-main-container main-container d-flex flex-column justify-content-center align-items-center">
+       <div class="card w-100 card-decorator mt-3 container shadow">
+           <div class="card-header text-center">
+               <h1 class="text-white bg-black border-white border py-2">Liste des Étudiants</h1>
+               <div class="d-flex justify-content-between align-items-center mt-3">
+                   <form class="d-flex w-50" method="get" th:action="@{/User/Etudiants}">
+                               <input placeholder="Rechercher Par Le Nom" class="form-control w-50 rounded-1" type="text" name="cle" th:value="${cle}"/>
+                               <input type="hidden" name="taille" th:value="${taille}" >
+                               <button type="submit" class="btn btn-primary rounded-1">
+                                   <i class="bi bi-search"></i>
+                               </button>
+                   </form>
+                   <form class="d-flex justify-content-end align-items-center w-50" id="submit-form-taille" method="get" th:action="@{/User/Etudiants}">
+                       <h5 class="text-white d-flex mx-2 mb-0">Taille :</h5>
+                       <input type="hidden" name="cle" th:value="${cle}" >
+                       <input type="number" class="form-control w-inp-numb  fw-bold border-white  border-1  rounded-1" th:value="${taille}" th:onchange="tailleChange()" name="taille" min="1">
+                   </form>
+               </div>
+
+           </div>
+           <div class="container card-body">
+               <table class="table table-bordered border-dark text-center">
+                   <thead class="table-light">
+                   <tr >
+                       <th >NOM</th>
+                       <th >PRENOM</th>
+                       <th >EMAIL</th>
+                       <th >DATE DE NAISSANCE</th>
+                       <th >GENRE</th>
+                       <th >EN REGLE</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   <tr th:each="e:${etudiants}" class="table-primary">
+                       <th th:text="${e.nom}"></th>
+                       <th th:text="${e.prenom}"></th>
+                       <th th:text="${e.email}"></th>
+                       <th th:text="${e.dateNaissance}"></th>
+                       <th th:text="${e.genre}"></th>
+                       <th th:text="${e.enRegle}"></th>
+                   </tr>
+                   </tbody>
+               </table>
+            </div>
+       </div>
+    </div>
+    <script layout:fragment="ScriptContainer">
+         function tailleChange(){
+             document.getElementById("submit-form-taille").submit();
+         }
+    </script>
+
+</body>
+</html>

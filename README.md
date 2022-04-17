@@ -13,15 +13,29 @@
 
 
 ### partie web :
-   * creation de controlleur pour Etudiant (`src/main/java/com/app/smfayw/web/EtudiantController.java`)
-   * creation de deux routes :
- 
-     ![page d'accueil](rapportImg/img2.png)
-   * creation de mainTemplate.html (`src/main/resources/templates/mainTemplates/mainTemplate.html`) : contient navbar et deux fragments
+
+   * création de controlleur pour Etudiant (`src/main/java/com/app/smfayw/web/EtudiantController.java`)
+   * création de deux routes :
+   
+   ![routes](rapportImg/img2.png)
+
+   * création de mainTemplate.html (`src/main/resources/templates/mainTemplates/mainTemplate.html`) : contient navbar et deux fragments
      * fragment pour container de la page
      * fragment pour script
      
-   * creationn de la page d'accueil (`src/main/resources/templates/Accueil.html`)
-     ![page d'accueil](rapportImg/img3.png)
+   * créationn de la page d'accueil (`src/main/resources/templates/Accueil.html`)
    
+   ![page d'accueil](rapportImg/img3.png)
+   
+    * méthode `findEtudiantByNomContains`
+   
+   ![méthod](rapportImg/img4.png)
+
+   * création de route :
+   
+   ![routes](rapportImg/img5.png)
+
+   * création de la page Etudiants (`src/main/resources/templates/Etudiants.html`)
+
+   ![page etudiants](rapportImg/img6.png)
 
