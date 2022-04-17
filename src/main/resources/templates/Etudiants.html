@@ -19,14 +19,16 @@
                    <form class="d-flex w-50" method="get" th:action="@{/User/Etudiants}">
                                <input placeholder="Rechercher Par Le Nom" class="form-control w-50 rounded-1" type="text" name="cle" th:value="${cle}"/>
                                <input type="hidden" name="taille" th:value="${taille}" >
+                               <input type="hidden" name="page" th:value="${pageActuel}" >
                                <button type="submit" class="btn btn-primary rounded-1">
                                    <i class="bi bi-search"></i>
                                </button>
                    </form>
                    <form class="d-flex justify-content-end align-items-center w-50" id="submit-form-taille" method="get" th:action="@{/User/Etudiants}">
                        <h5 class="text-white d-flex mx-2 mb-0">Taille :</h5>
-                       <input type="hidden" name="cle" th:value="${cle}" >
                        <input type="number" class="form-control w-inp-numb  fw-bold border-white  border-1  rounded-1" th:value="${taille}" th:onchange="tailleChange()" name="taille" min="1">
+                       <input type="hidden" name="cle" th:value="${cle}" >
+                       <input type="hidden" name="page" th:value="${pageActuel}" >
                    </form>
                </div>
 
@@ -54,6 +56,30 @@
                    </tr>
                    </tbody>
                </table>
+               <nav aria-label="Page navigation example">
+                   <ul class="pagination  justify-content-center">
+                       <li class="page-item">
+                           <a class="page-link" href="#" aria-label="Previous" th:href="@{/User/Etudiants(taille=${taille},cle=${cle},page=1)}">
+                               <span aria-hidden="true">&laquo;</span>
+                           </a>
+                       </li>
+                       <li class="page-item">
+                           <a class="page-link" th:href="@{/User/Etudiants(taille=${taille},cle=${cle},page=${pageActuel} <= ${1} ? 1:${pageActuel}-1  )}">Previous</a>
+                       </li>
+                       <li th:each="numero:${pagination}">
+                           <a th:class="${numero==pageActuel? 'btn btn-primary mx-1': 'btn btn-outline-primary mx-1'}"
+                              th:text="${numero}"
+                              th:href="@{/User/Etudiants(taille=${taille},cle=${cle},page=${numero})}"></a>
+                       </li>
+                       <li class="page-item"><a class="page-link" th:href="@{/User/Etudiants(taille=${taille},cle=${cle},page=${pageActuel} >= ${totalPage}?${totalPage} : ${pageActuel}+1 )}" >Next</a></li>
+
+                       <li class="page-item">
+                           <a class="page-link" href="#" aria-label="Next" th:href="@{/User/Etudiants(taille=${taille},cle=${cle},page=${totalPage})}">
+                               <span aria-hidden="true">&raquo;</span>
+                           </a>
+                       </li>
+                   </ul>
+               </nav>
             </div>
        </div>
     </div>
