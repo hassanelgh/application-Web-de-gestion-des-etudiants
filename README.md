@@ -31,11 +31,27 @@
    
    ![méthod](rapportImg/img4.png)
 
+   * remplire la base de données par des fake données par dependancy :`jfairy`
+
+   ![dependancy](rapportImg/img8.png)
+   
+   ![remplire la base de données](rapportImg/img7.png)
+
    * création de route :
    
    ![routes](rapportImg/img5.png)
 
+
    * création de la page Etudiants (`src/main/resources/templates/Etudiants.html`)
 
    ![page etudiants](rapportImg/img6.png)
+
+
+   * pagination :
+     * la fonction qui retourn liste des pages :
+     
+      ![page etudiants](rapportImg/img10.png)
+   
+   ![page etudiants](rapportImg/img9.png)
+
 
