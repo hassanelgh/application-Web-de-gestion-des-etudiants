@@ -15,6 +15,7 @@
 ### partie web :
    * creation de controlleur pour Etudiant (`src/main/java/com/app/smfayw/web/EtudiantController.java`)
    * creation de deux routes :
+ 
      ![page d'accueil](rapportImg/img2.png)
    * creation de mainTemplate.html (`src/main/resources/templates/mainTemplates/mainTemplate.html`) : contient navbar et deux fragments
      * fragment pour container de la page
