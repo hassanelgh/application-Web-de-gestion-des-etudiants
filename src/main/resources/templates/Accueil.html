@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="mainTemplates/mainTemplate"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+    <link href="css/Accueil.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+    <div layout:fragment="MainContainer" class="accueil-main-container main-container d-flex flex-column justify-content-center align-items-center">
+        <div class="w-100 card-bg px-2">
+            <h1 class=" text-center d-flex align-items-center justify-content-center text-white name-app border-dark border-bottom">
+                <img src="img/gestion-de-projet.png" alt="" width="100" height="100" class="mx-2">
+                SM<span class="fw-bold text-danger">FAYW</span></h1>
+            <h4 class="text-white fw-bold  text-center">Application de gestion des étudiants :</h4>
+            <div class="d-flex flex-column align-items-center justify-content-center w-100">
+                <div >
+                    <p class="text-white"> - Chercher des étudiants par nom</p>
+                    <p class="text-white"> - Supprimer des étudiants</p>
+                    <p class="text-white"> - Saisir et Ajouter des étudiants</p>
+                    <p class="text-white"> - Editer et mettre à jour des étudiants</p>
+                    <p class="text-white"> - Autres fonctionnalités supplémentaires</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 d-flex align-items-center justify-content-center pt-3">
+                    <button id="btnRecherche" class="text-white btn btn-primary d-flex justify-content-center align-items-center px-2" href="#" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                        <h3 id="">Rechercher Un Etudiant</h3>
+                    </button>
+                    <form class="d-none w-50 d-flex my-2"  id="containerRecherche">
+                        <input id="nom" class="form-control mx-2" type="text" name="nom"/>
+                        <button type="submit" class=" btn btn-primary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+        </div>
+
+    </div>
+
+    <script layout:fragment="ScriptContainer">
+        var containerRecherche=document.getElementById("containerRecherche");
+        var btnRecherche=document.getElementById("btnRecherche");
+
+        btnRecherche.onclick=()=>{
+            containerRecherche.classList.remove("d-none");
+            btnRecherche.classList.add("d-none");
+        }
+
+    </script>
+</body>
+</html>
