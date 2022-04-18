@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Etudiant</title>
-    <link href="../css/FormEtudiants.css" rel="stylesheet" type="text/css">
+    <link href="../../css/FormEtudiants.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -23,12 +23,14 @@
                         <div class="col-lg-9">
                             <input id="nom" class="form-control" type="text" name="nom" th:value="${etudiant.nom}"/>
                         </div>
+                        <span class="alert alert-danger" th:errors="${etudiant.nom}"></span>
                     </div>
                     <div class="row g-2 mt-2 align-items-center">
                         <label for="prenom"  class="col-lg-3 fw-bold">Prénom</label>
                         <div class="col-lg-9">
                             <input id="prenom" class="form-control" type="text" name="prenom" th:value="${etudiant.prenom}"/>
                         </div>
+                        <span class="alert alert-danger" th:errors="${etudiant.prenom}"></span>
 
                     </div>
                     <div class="row g-2 mt-2 align-items-center">
@@ -36,28 +38,32 @@
                         <div class="col-lg-9">
                             <input id="email" class="form-control" type="email" name="email" th:value="${etudiant.email}"/>
                         </div>
+                        <span class="alert alert-danger" th:errors="${etudiant.email}"></span>
                     </div>
                     <div class="row g-2 mt-2 align-items-center">
                         <label for="dateNaissance" class="col-lg-3 fw-bold">Date Naissance</label>
                         <div class="col-lg-9">
                             <input id="dateNaissance" class="form-control"  type="date" name="dateNaissance" th:value="${etudiant.dateNaissance}"/>
                         </div>
+                        <span class="alert alert-danger" th:errors="${etudiant.dateNaissance}"></span>
                     </div>
                     <div class="row g-2 mt-2 align-items-center">
                         <label for="enRegle" class="col-lg-3 fw-bold">En Régle</label>
                         <div class="col-lg-9">
                             <input  id="enRegle" type="checkbox" name="enRegle" th:checked="${etudiant.enRegle}"/>
                         </div>
+                        <span class="alert alert-danger" th:errors="${etudiant.enRegle}"></span>
                     </div>
                     <div class="row  g-2 mt-2 align-items-center">
                         <label for="genre" class="form-label fw-bold col-lg-3">Sexe de l'étudiant : </label>
                         <div class="col-lg-9">
                             <select class="form-control" id="genre" name="genre">
-                                <option selected disabled> Choisir le genre...</option>
+                                <option selected disabled> Choisir le genre :</option>
                                 <option value="MASCULIN" th:selected="${etudiant.getGenre()=='MASCULIN'}"> Masculin</option>
                                 <option value="FEMININ" th:selected="${etudiant.getGenre()=='FEMININ'}"> Féminin</option>
                             </select>
                         </div>
+                        <span class="alert alert-danger" th:errors="${etudiant.genre}"></span>
                     </div>
                     <div class="w-100">
                         <button type="submit" class="btn btn-primary mt-2 float-end">Enregistrer</button>

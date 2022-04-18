@@ -79,4 +79,19 @@
 
      ![page form etudiant](rapportImg/img16.png)    
 
+     * validation de la formulaire :
+       * ajouter la dependance : 
+
+       ![dependancy](rapportImg/img17.png)
      
+       * ajouter les annotations:
+
+       ![les annotations](rapportImg/img18.png)
+
+       * ajouter la validation dans la route save :
+
+       ![les annotations](rapportImg/img19.png)
+
+       * la formulaire :
+
+       ![formulaire avec validation](rapportImg/img20.png)
