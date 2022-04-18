@@ -9,8 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,6 @@ public class EtudiantController {
             page=1;
         }
         Page<Etudiant> etudiantPage=etudiantRepository.findEtudiantByNomContains(cle, PageRequest.of(page-1,taille));
-        System.out.println(page + "  " + etudiantPage.getTotalPages());
         if(page>etudiantPage.getTotalPages()){
             page=etudiantPage.getTotalPages();
             etudiantPage=etudiantRepository.findEtudiantByNomContains(cle, PageRequest.of(page-1,taille));
@@ -78,4 +76,13 @@ public class EtudiantController {
         return pagination;
     }
 
+
+    @DeleteMapping("/Admin/Etudiants/supprimer/{id}")
+    @ResponseBody
+    public void supprimer(@PathVariable("id") String id){
+        Etudiant etudiant=etudiantRepository.getById(id);
+        if(etudiant!=null)
+            etudiantRepository.deleteById(id);
+
+    }
 }

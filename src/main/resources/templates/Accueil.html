@@ -46,13 +46,14 @@
     </div>
 
     <script layout:fragment="ScriptContainer">
-        var containerRecherche=document.getElementById("containerRecherche");
-        var btnRecherche=document.getElementById("btnRecherche");
-
-        btnRecherche.onclick=()=>{
-            containerRecherche.classList.remove("d-none");
-            btnRecherche.classList.add("d-none");
-        }
+        $(document).ready( function () {
+            var containerRecherche=$("#containerRecherche");
+            var btnRecherche=$("#btnRecherche");
+            btnRecherche.click(function (e){
+                    containerRecherche.classList.remove("d-none");
+                    btnRecherche.classList.add("d-none");
+            })
+        });
 
     </script>
 </body>

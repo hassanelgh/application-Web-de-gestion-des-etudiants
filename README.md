@@ -55,3 +55,15 @@
    ![page etudiants](rapportImg/img9.png)
 
 
+   * supprimer un etudiant:
+     * route :
+
+     ![route delete](rapportImg/img11.png)    
+      
+   * button supprimer
+
+   ![button supprimer](rapportImg/img12.png)
+
+   * fonction qui permet d'envoyer la requete Delete (utilisation de : ` JQuery AJAX`):
+
+   ![fonction supprimer](rapportImg/img13.png)
