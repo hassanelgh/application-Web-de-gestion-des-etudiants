@@ -9,10 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @AllArgsConstructor
@@ -84,5 +86,30 @@ public class EtudiantController {
         if(etudiant!=null)
             etudiantRepository.deleteById(id);
 
+    }
+
+    @GetMapping("/Admin/FormEtudiant")
+    public String formEtudiant(Model model,
+                               @RequestParam(name = "page" ,defaultValue = "0") int page,
+                               @RequestParam(name = "taille",defaultValue = "5") int taille,
+                               @RequestParam(name = "cle",defaultValue = "") String cle ){
+
+        Etudiant etudiant=new Etudiant();
+        model.addAttribute("etudiant",etudiant);
+        model.addAttribute("taille",taille);
+        model.addAttribute("cle",cle);
+        model.addAttribute("page",page);
+        return "FormEtudiant";
+    }
+
+    @PostMapping("/Admin/Etudiants/Save")
+    public String saveEtudiant(Model model,Etudiant etudiant,
+                               @RequestParam(name = "page" ,defaultValue = "0") int page,
+                               @RequestParam(name = "taille",defaultValue = "5") int taille,
+                               @RequestParam(name = "cle",defaultValue = "") String cle){
+        etudiant.setId(UUID.randomUUID().toString());
+        etudiantRepository.save(etudiant);
+
+        return  "redirect:/User/Etudiants?page="+page+"&cle="+cle+"&taille="+taille;
     }
 }

@@ -66,3 +66,17 @@
    * fonction qui permet d'envoyer la requete Delete (utilisation de : ` JQuery AJAX`):
 
    ![fonction supprimer](rapportImg/img13.png)
+
+
+   * ajouter un etudiant:
+     * création de deux route :      
+     
+     ![route form etudiant ](rapportImg/img14.png)    
+
+     ![route save etudiant](rapportImg/img15.png)    
+     
+     * création de la page FormEtudiant (`src/main/resources/templates/FormEtudiant.html`)
+
+     ![page form etudiant](rapportImg/img16.png)    
+
+     
