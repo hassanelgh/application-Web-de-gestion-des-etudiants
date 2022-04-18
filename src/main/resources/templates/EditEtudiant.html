@@ -14,10 +14,15 @@
     <div layout:fragment="MainContainer" class="etudiants-main-container main-container d-flex flex-column justify-content-center align-items-center">
         <div class="card w-100 card-decorator mt-3 container shadow">
             <div class="card-header text-center">
-                <h1 class="text-white bg-black border-white border py-2">Un Nouveau Etudiant</h1>
+                <h1 class="text-white bg-black border-white border py-2">Edit l'Etudiant</h1>
             </div>
             <div class="card-body text-white">
                 <form method="post" th:action="@{/Admin/Etudiants/Save(taille=${taille},cle=${cle},page=${page})}">
+                    <div>
+                        <label for="id">id</label>
+                        <label th:text="${etudiant.id}"></label>
+                        <input id="id" class="form-control" type="hidden" name="id" th:value="${etudiant.id}"/>
+                    </div>
                     <div class="row g-2 mt-2 align-items-center">
                         <label for="nom" class="col-lg-3 fw-bold">Nom</label>
                         <div class="col-lg-9">
@@ -50,7 +55,7 @@
                     <div class="row g-2 mt-2 align-items-center">
                         <label for="enRegle" class="col-lg-3 fw-bold">En Régle</label>
                         <div class="col-lg-9">
-                            <input  id="enRegle" type="checkbox" name="enRegle"/>
+                            <input  id="enRegle" type="checkbox" name="enRegle" th:checked="${etudiant.enRegle}"/>
                         </div>
                         <span class="alert alert-danger" th:errors="${etudiant.enRegle}"></span>
                     </div>
@@ -58,9 +63,8 @@
                         <label for="genre" class="form-label fw-bold col-lg-3">Sexe de l'étudiant : </label>
                         <div class="col-lg-9">
                             <select class="form-control" id="genre" name="genre">
-                                <option selected disabled> Choisir le genre :</option>
-                                <option value="MASCULIN" > Masculin</option>
-                                <option value="FEMININ"> Féminin</option>
+                                <option value="MASCULIN" th:selected="${etudiant.getGenre()=='MASCULIN'}"> Masculin</option>
+                                <option value="FEMININ" th:selected="${etudiant.getGenre()=='FEMININ'}"> Féminin</option>
                             </select>
                         </div>
                         <span class="alert alert-danger" th:errors="${etudiant.genre}"></span>
