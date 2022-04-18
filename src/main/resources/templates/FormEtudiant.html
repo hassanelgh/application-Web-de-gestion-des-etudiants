@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="mainTemplates/mainTemplate"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Etudiant</title>
+    <link href="../css/FormEtudiants.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+    <div layout:fragment="MainContainer" class="etudiants-main-container main-container d-flex flex-column justify-content-center align-items-center">
+        <div class="card w-100 card-decorator mt-3 container shadow">
+            <div class="card-header text-center">
+                <h1 class="text-white bg-black border-white border py-2">Un Nouveau Etudiant</h1>
+            </div>
+            <div class="card-body text-white">
+                <form method="post" th:action="@{/Admin/Etudiants/Save(taille=${taille},cle=${cle},page=${page})}">
+                    <div class="row g-2 mt-2 align-items-center">
+                        <label for="nom" class="col-lg-3 fw-bold">Nom</label>
+                        <div class="col-lg-9">
+                            <input id="nom" class="form-control" type="text" name="nom" th:value="${etudiant.nom}"/>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-2 align-items-center">
+                        <label for="prenom"  class="col-lg-3 fw-bold">Prénom</label>
+                        <div class="col-lg-9">
+                            <input id="prenom" class="form-control" type="text" name="prenom" th:value="${etudiant.prenom}"/>
+                        </div>
+
+                    </div>
+                    <div class="row g-2 mt-2 align-items-center">
+                        <label for="email" class="col-lg-3 fw-bold">Email</label>
+                        <div class="col-lg-9">
+                            <input id="email" class="form-control" type="email" name="email" th:value="${etudiant.email}"/>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-2 align-items-center">
+                        <label for="dateNaissance" class="col-lg-3 fw-bold">Date Naissance</label>
+                        <div class="col-lg-9">
+                            <input id="dateNaissance" class="form-control"  type="date" name="dateNaissance" th:value="${etudiant.dateNaissance}"/>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-2 align-items-center">
+                        <label for="enRegle" class="col-lg-3 fw-bold">En Régle</label>
+                        <div class="col-lg-9">
+                            <input  id="enRegle" type="checkbox" name="enRegle" th:checked="${etudiant.enRegle}"/>
+                        </div>
+                    </div>
+                    <div class="row  g-2 mt-2 align-items-center">
+                        <label for="genre" class="form-label fw-bold col-lg-3">Sexe de l'étudiant : </label>
+                        <div class="col-lg-9">
+                            <select class="form-control" id="genre" name="genre">
+                                <option selected disabled> Choisir le genre...</option>
+                                <option value="MASCULIN" th:selected="${etudiant.getGenre()=='MASCULIN'}"> Masculin</option>
+                                <option value="FEMININ" th:selected="${etudiant.getGenre()=='FEMININ'}"> Féminin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <button type="submit" class="btn btn-primary mt-2 float-end">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
