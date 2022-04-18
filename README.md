@@ -60,13 +60,13 @@
 
      ![route delete](rapportImg/img11.png)    
       
-   * button supprimer
+     * button supprimer
+       
+     ![button supprimer](rapportImg/img12.png)
+     
+     * fonction qui permet d'envoyer la requete Delete (utilisation de : ` JQuery AJAX`):
 
-   ![button supprimer](rapportImg/img12.png)
-
-   * fonction qui permet d'envoyer la requete Delete (utilisation de : ` JQuery AJAX`):
-
-   ![fonction supprimer](rapportImg/img13.png)
+     ![fonction supprimer](rapportImg/img13.png)
 
 
    * ajouter un etudiant:
@@ -96,3 +96,17 @@
        * la formulaire :
 
        ![formulaire avec validation](rapportImg/img20.png)
+        
+
+   * édit un etudiant:
+     * route:
+     
+     ![route edit un etudiant ](rapportImg/img21.png)    
+
+     * button edit 
+
+     ![button ](rapportImg/img22.png)
+
+       * la page edit etudiant:(`src/main/resources/templates/EditEtudiant.html`)
+
+
