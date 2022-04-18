@@ -26,7 +26,7 @@
                    </form>
                    <form class="d-flex justify-content-end align-items-center w-50" id="submit-form-taille" method="get" th:action="@{/User/Etudiants}">
                        <h5 class="text-white d-flex mx-2 mb-0">Taille :</h5>
-                       <input type="number" class="form-control w-inp-numb  fw-bold border-white  border-1  rounded-1" th:value="${taille}" th:onchange="tailleChange()" name="taille" min="1">
+                       <input type="number" id="taille-input" class="form-control w-inp-numb  fw-bold border-white  border-1  rounded-1" th:value="${taille}" name="taille" min="1">
                        <input type="hidden" name="cle" th:value="${cle}" >
                        <input type="hidden" name="page" th:value="${pageActuel}" >
                    </form>
@@ -43,6 +43,7 @@
                        <th >DATE DE NAISSANCE</th>
                        <th >GENRE</th>
                        <th >EN REGLE</th>
+                       <th></th>
                    </tr>
                    </thead>
                    <tbody>
@@ -53,6 +54,12 @@
                        <th th:text="${e.dateNaissance}"></th>
                        <th th:text="${e.genre}"></th>
                        <th th:text="${e.enRegle}"></th>
+                       <th >
+                           <button class="btn btn-danger  supprimerBtn"  th:data-id="${e.getId()}"
+                                   th:data-name="${e.getPrenom()+' '+e.getNom()}">
+                               <i class="bi bi-trash"></i>
+                           </button>
+                       </th>
                    </tr>
                    </tbody>
                </table>
@@ -84,9 +91,38 @@
        </div>
     </div>
     <script layout:fragment="ScriptContainer">
-         function tailleChange(){
-             document.getElementById("submit-form-taille").submit();
-         }
+         $(document).ready( function () {
+
+             $("#taille-input").change(function (){
+                 $("#submit-form-taille").submit();
+             })
+
+            function supprimer(id){
+                console.log('id :'+id)
+                $.ajax({
+                    url :'/Admin/Etudiants/supprimer/'+id,
+                    method: "DELETE"
+                }).done(()=>{
+                    console.log("Bien supprimé");
+                    window.location.reload();
+                }).fail(e=>{
+                    console.log("probleme, l'étudiant n'est pas supprimé !!");
+                    console.error(e)
+                });
+            }
+             $(".supprimerBtn").click( function(e){
+
+                 const id = $(e.currentTarget).data('id')
+
+                 const name = $(e.currentTarget).data('name')
+                 if (confirm('Etes-vous sure de supprimer l\'étudiant : '+name+'  ?')){
+                     supprimer(id);
+                     console.log('supprimer');
+                 } else {
+                     console.log('cancel');
+                 }
+             });
+         });
     </script>
 
 </body>
