@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -103,10 +104,13 @@ public class EtudiantController {
     }
 
     @PostMapping("/Admin/Etudiants/Save")
-    public String saveEtudiant(Model model,Etudiant etudiant,
-                               @RequestParam(name = "page" ,defaultValue = "0") int page,
+    public String saveEtudiant(Model model, @Valid Etudiant etudiant, BindingResult bindingResult,
+                               @RequestParam(name = "page" , defaultValue = "0") int page,
                                @RequestParam(name = "taille",defaultValue = "5") int taille,
                                @RequestParam(name = "cle",defaultValue = "") String cle){
+
+        if(bindingResult.hasErrors()) return "FormEtudiant";
+
         etudiant.setId(UUID.randomUUID().toString());
         etudiantRepository.save(etudiant);
 
