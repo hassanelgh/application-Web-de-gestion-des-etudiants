@@ -83,9 +83,10 @@ public class EtudiantController {
     @DeleteMapping("/Admin/Etudiants/supprimer/{id}")
     @ResponseBody
     public void supprimer(@PathVariable("id") String id){
-        Etudiant etudiant=etudiantRepository.getById(id);
-        if(etudiant!=null)
-            etudiantRepository.deleteById(id);
+        Etudiant etudiant=etudiantRepository.findById(id).orElse(null);
+        if(etudiant==null) throw  new RuntimeException("Etudiant introuvable");
+
+        etudiantRepository.deleteById(id);
 
     }
 
@@ -110,10 +111,30 @@ public class EtudiantController {
                                @RequestParam(name = "cle",defaultValue = "") String cle){
 
         if(bindingResult.hasErrors()) return "FormEtudiant";
-
-        etudiant.setId(UUID.randomUUID().toString());
+        if(etudiant.getId()==null)
+            etudiant.setId(UUID.randomUUID().toString());
         etudiantRepository.save(etudiant);
 
         return  "redirect:/User/Etudiants?page="+page+"&cle="+cle+"&taille="+taille;
     }
+
+
+    @GetMapping("/Admin/EditEtudiant")
+    public  String editPatient(Model model,
+                               @RequestParam(name = "id") String id,
+                               @RequestParam(name = "page" , defaultValue = "0") int page,
+                               @RequestParam(name = "taille",defaultValue = "5") int taille,
+                               @RequestParam(name = "cle",defaultValue = "") String cle){
+        Etudiant etudiant=etudiantRepository.findById(id).orElse(null);
+        if(etudiant==null) throw  new RuntimeException("Etudiant introuvable");
+
+        model.addAttribute("etudiant",etudiant);
+        model.addAttribute("taille",taille);
+        model.addAttribute("cle",cle);
+        model.addAttribute("page",page);
+        return "EditEtudiant";
+    }
+
+
+
 }
