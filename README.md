@@ -100,7 +100,7 @@
    * édit un etudiant:
      * route:
      
-     ![route edit un etudiant ](rapportImg/img20.png)    
+     ![route edit un etudiant ](rapportImg/img21.png)    
 
      * button edit 
 
