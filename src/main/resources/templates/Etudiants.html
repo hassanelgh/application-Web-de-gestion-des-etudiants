@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="mainTemplates/mainTemplate"
 >
 <head>
     <meta charset="UTF-8">
     <title>Etudiants</title>
-    <link href="../css/Etudiants.css" rel="stylesheet" type="text/css">
+    <link href="/css/Etudiants.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -43,7 +44,7 @@
                        <th >DATE DE NAISSANCE</th>
                        <th >GENRE</th>
                        <th >EN REGLE</th>
-                       <th></th>
+                       <th sec:authorize="hasRole('ADMIN')"></th>
                    </tr>
                    </thead>
                    <tbody>
@@ -54,8 +55,8 @@
                        <th th:text="${e.dateNaissance}"></th>
                        <th th:text="${e.genre}"></th>
                        <th th:text="${e.enRegle}"></th>
-                       <th >
-                           <a class="btn btn-primary" th:href="@{/Admin/EditEtudiant(id=${e.id},taille=${taille},cle=${cle},page=${pageActuel})}">
+                       <th sec:authorize="hasRole('ADMIN')">
+                           <a class="btn btn-primary"  th:href="@{/Admin/EditEtudiant(id=${e.id},taille=${taille},cle=${cle},page=${pageActuel})}">
                                <i class="bi bi-pencil-square"></i>
                            </a>
 
@@ -96,7 +97,6 @@
     </div>
     <script layout:fragment="ScriptContainer">
          $(document).ready( function () {
-
              $("#taille-input").change(function (){
                  $("#submit-form-taille").submit();
              })
@@ -104,7 +104,7 @@
             function supprimer(id){
                 console.log('id :'+id)
                 $.ajax({
-                    url :'/Admin/Etudiants/supprimer/'+id,
+                    url :'/Admin/Etudiants/Supprimer/'+id,
                     method: "DELETE"
                 }).done(()=>{
                     console.log("Bien supprimé");
@@ -117,7 +117,6 @@
              $(".supprimerBtn").click( function(e){
 
                  const id = $(e.currentTarget).data('id')
-
                  const name = $(e.currentTarget).data('name')
                  if (confirm('Etes-vous sure de supprimer l\'étudiant : '+name+'  ?')){
                      supprimer(id);

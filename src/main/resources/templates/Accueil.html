@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
-    <link href="css/Accueil.css" rel="stylesheet" type="text/css">
+    <link href="/css/Accueil.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -14,7 +14,7 @@
     <div layout:fragment="MainContainer" class="accueil-main-container main-container d-flex flex-column justify-content-center align-items-center">
         <div class="w-100 card-bg px-2">
             <h1 class=" text-center d-flex align-items-center justify-content-center text-white name-app border-dark border-bottom">
-                <img src="img/gestion-de-projet.png" alt="" width="100" height="100" class="mx-2">
+                <img src="/img/gestion-de-projet.png" alt="" width="100" height="100" class="mx-2">
                 SM<span class="fw-bold text-danger">FAYW</span></h1>
             <h4 class="text-white fw-bold  text-center">Application de gestion des étudiants :</h4>
             <div class="d-flex flex-column align-items-center justify-content-center w-100">
@@ -43,15 +43,13 @@
                     </form>
         </div>
 
-    </div>
+    </div>s
 
     <script layout:fragment="ScriptContainer">
         $(document).ready( function () {
-            var containerRecherche=$("#containerRecherche");
-            var btnRecherche=$("#btnRecherche");
-            btnRecherche.click(function (e){
-                    containerRecherche.classList.remove("d-none");
-                    btnRecherche.classList.add("d-none");
+            $("#btnRecherche").click(function (e){
+                $("#containerRecherche").removeClass("d-none");
+                $("#btnRecherche").addClass("d-none");
             })
         });
 

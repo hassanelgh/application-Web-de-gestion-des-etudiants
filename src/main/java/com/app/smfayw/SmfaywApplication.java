@@ -1,15 +1,18 @@
 package com.app.smfayw;
 
-import com.app.smfayw.entites.Etudiant;
-import com.app.smfayw.entites.Genre;
+import com.app.smfayw.entites.*;
 import com.app.smfayw.repositories.EtudiantRepository;
+import com.app.smfayw.repositories.RoleRepository;
+import com.app.smfayw.repositories.UserRepository;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.person.Person;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -21,7 +24,7 @@ public class SmfaywApplication {
 
 
     //@Bean
-    CommandLineRunner commandLineRunner(EtudiantRepository etudiantRepository){
+    CommandLineRunner commandLineRunner(EtudiantRepository etudiantRepository, PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository){
         return args -> {
             // initialiser les données (les etudiants) dans la base de donnée :
 
@@ -40,7 +43,30 @@ public class SmfaywApplication {
 
             }
 
+            Role roleAdmin=new Role(NomRole.ADMIN,new ArrayList<>());
+            Role roleUser=new Role(NomRole.USER,new ArrayList<>());
 
+            roleRepository.save(roleAdmin);
+            roleRepository.save(roleUser);
+
+            User userAdmin=new User("admin", passwordEncoder.encode("0000"),true,new ArrayList<>());
+            User userUser=new User("user", passwordEncoder.encode("0000"),true,new ArrayList<>());
+
+            userRepository.save(userAdmin);
+            userRepository.save(userUser);
+
+            roleAdmin.getUsers().add(userAdmin);
+            roleUser.getUsers().add(userAdmin);
+            roleUser.getUsers().add(userUser);
+
+            userAdmin.getRoles().add(roleAdmin);
+            userAdmin.getRoles().add(roleUser);
+            userUser.getRoles().add(roleUser);
+
+            roleRepository.save(roleAdmin);
+            roleRepository.save(roleUser);
+            userRepository.save(userAdmin);
+            userRepository.save(userUser);
 
         };
     }
