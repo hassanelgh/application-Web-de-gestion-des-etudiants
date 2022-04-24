@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="mainTemplates/mainTemplate"
+>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${status}"></title>
+    <link href="/css/ErrorPage.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+    <div layout:fragment="MainContainer" class="container main-container d-flex flex-column justify-content-center align-items-center w-100 ">
+        <div class="w-100 px-2 alert-danger text-center mt-5 card">
+            <h1 th:text="${errorMsg}"></h1>
+        </div>
+    </div>
+
+</body>
+</html>

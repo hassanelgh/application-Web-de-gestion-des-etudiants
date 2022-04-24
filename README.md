@@ -107,6 +107,50 @@
 
      ![button ](rapportImg/img22.png)
 
-       * la page edit etudiant:(`src/main/resources/templates/EditEtudiant.html`)
+     * la page edit etudiant:(`src/main/resources/templates/EditEtudiant.html`)
 
 
+
+   * entite user et role: 
+
+     ![entite ](rapportImg/img24.png)
+
+   * reporisotry user et role:
+
+     ![repository ](rapportImg/img25.png)
+
+   * Security :
+     * ajouter las dépendances :
+     
+     ![dependances ](rapportImg/img23.png)
+
+     * Config (`src/main/java/com/app/smfayw/security/SecurityConfig.java`) :
+
+     ![dependances ](rapportImg/img26.png)
+     ![dependances ](rapportImg/img27.png)
+   
+     * Controller (`src/main/java/com/app/smfayw/security/SecurityController.java`) :
+
+     ![dependances ](rapportImg/img28.png)
+
+     * ErrosController (`src/main/java/com/app/smfayw/security/ErrorsController.java`) :
+
+     ![dependances ](rapportImg/img29.png)
+   
+     * Connexion page :
+
+     ![dependances ](rapportImg/img23.png)
+
+     * ErrorPage :
+
+     ![dependances ](rapportImg/img30.png)
+     
+     * Login page :
+
+     ![dependances ](rapportImg/img31.png)
+   
+     * specifier pour chaque type d'utilisateur (admin , user)
+
+     ![dependances ](rapportImg/img32.png)
+   
+     

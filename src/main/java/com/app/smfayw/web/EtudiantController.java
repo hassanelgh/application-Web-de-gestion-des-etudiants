@@ -24,7 +24,7 @@ public class EtudiantController {
 
     @GetMapping("/")
     public String index(){
-        return "redirect:/Accueil";
+        return "Accueil";
     }
     @GetMapping("/Accueil")
     public String accueil(){
@@ -43,8 +43,8 @@ public class EtudiantController {
             page=1;
         }
         Page<Etudiant> etudiantPage=etudiantRepository.findEtudiantByNomContains(cle, PageRequest.of(page-1,taille));
-        if(page>etudiantPage.getTotalPages()){
-            page=etudiantPage.getTotalPages();
+        if(page>etudiantPage.getTotalPages() ){
+            page=etudiantPage.getTotalPages()+1;
             etudiantPage=etudiantRepository.findEtudiantByNomContains(cle, PageRequest.of(page-1,taille));
         }
         model.addAttribute("etudiants",etudiantPage);
@@ -80,7 +80,7 @@ public class EtudiantController {
     }
 
 
-    @DeleteMapping("/Admin/Etudiants/supprimer/{id}")
+    @DeleteMapping("/Admin/Etudiants/Supprimer/{id}")
     @ResponseBody
     public void supprimer(@PathVariable("id") String id){
         Etudiant etudiant=etudiantRepository.findById(id).orElse(null);
